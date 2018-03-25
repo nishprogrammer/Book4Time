@@ -1,0 +1,43 @@
+<aura:component controller="RelatedCustomerController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
+                access="public">
+	
+	<aura:attribute name="recordId" type="Id" access="public" />
+
+    <aura:attribute name="isLoading" type="Boolean" default="true" access="public" />
+    <aura:attribute name="relatedCustomers" type="Object" access="public"/>
+    <aura:attribute name="columns" type="List" access="public"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:if isTrue="{!v.isLoading}">
+        <div class="slds-spinner_container" aura:id="spinner">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+              <div class="slds-spinner__dot-a"></div>
+              <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+
+    <article class="slds-card">
+		<div class="slds-card__header slds-grid">
+			<header class="slds-media slds-media_center slds-has-flexi-truncate">
+				<div class="slds-media__body">
+					<h2>
+						<a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+							<span class="slds-text-heading_small">Related Customers</span>
+						</a>
+					</h2>
+				</div>
+			</header>
+			<div class="slds-no-flex"></div>
+		</div>
+		<div class="slds-card__body">
+			<lightning:datatable data="{!v.relatedCustomers}"
+        		columns="{!v.columns }"
+        		keyField="id"
+				hideCheckboxColumn="true"
+				minColumnWidth="100"/>
+		</div>
+	</article>
+</aura:component>
