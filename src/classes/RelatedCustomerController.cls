@@ -1,3 +1,8 @@
+/**
+	Name : RelatedCustomerController
+	Developed By : Nishant Sharma
+	Date : 25th March 2018
+*/
 public with sharing class RelatedCustomerController {
 
 	@AuraEnabled
